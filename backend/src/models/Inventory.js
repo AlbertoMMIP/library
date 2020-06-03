@@ -17,5 +17,7 @@ const Inventory = sequelize.define('inventories', {
   timeStamps: false
 });
 
-Inventory.hasMany(Loan, {foreingKey: 'inventory_id'});
+Inventory.hasMany(Loan, {foreingKey: 'inventory_id', sourceKey: 'id'});
+Loan.belongsTo(Inventory,  {foreingKey: 'inventory_id', sourceKey: 'id'});
+
 export default Inventory;

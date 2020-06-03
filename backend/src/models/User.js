@@ -32,6 +32,7 @@ const User = sequelize.define('users', {
   timeStamps: false
 });
 
-User.hasMany(Loan, {foreingKey: 'user_id'});
+User.hasMany(Loan, {foreingKey: 'user_id', sourceKey: 'id'});
+Loan.belongsTo(User, {foreingKey: 'user_id', sourceKey: 'id'});
 
 export deafult User;

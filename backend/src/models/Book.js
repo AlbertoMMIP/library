@@ -26,6 +26,7 @@ const Book = sequelize.define('books', {
   timeStamps: false
 });
 
-Book.hasMany(Inventory, {foreingKey: 'book_id'});
+Book.hasMany(Inventory, {foreingKey: 'book_id', sourceKey: 'id'});
+Inventory.belongsTo(Book,  {foreingKey: 'book_id', sourceKey: 'id'});
 
 export default Book;
