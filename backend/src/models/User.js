@@ -25,14 +25,17 @@ const User = sequelize.define('users', {
   cell_phone: {
     type: Sequelize.TEXT
   },
+  email: {
+    type: Sequelize.TEXT
+  },
   rol: {
     type: Sequelize.TEXT
   }
 },{
-  timeStamps: false
+  timestamps: false
 });
 
 User.hasMany(Loan, {foreingKey: 'user_id', sourceKey: 'id'});
 Loan.belongsTo(User, {foreingKey: 'user_id', sourceKey: 'id'});
 
-export deafult User;
+export default User;

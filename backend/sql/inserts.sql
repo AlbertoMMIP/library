@@ -14,8 +14,8 @@ INSERT INTO public.catalogs (code,description,type_catalog)
 
 
 -- Se genera el usuario super administrador
-INSERT INTO public.users ("name",sex,cell_phone,rol)
-	VALUES ('SUPER ADMIN','H','5578687852','SA');
+INSERT INTO public.users ("name",sex,cell_phone,email,rol)
+	VALUES ('SUPER ADMIN','H','5578687852','josealberto.martinezmarquez@gamil.com','SA');
 
 
 -- INSERTAMOS LOS LIBROS BASE

@@ -14,7 +14,7 @@ const Inventory = sequelize.define('inventories', {
     type: Sequelize.INTEGER
   }
 },{
-  timeStamps: false
+  timestamps: false
 });
 
 Inventory.hasMany(Loan, {foreingKey: 'inventory_id', sourceKey: 'id'});

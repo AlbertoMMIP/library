@@ -4,6 +4,7 @@ import path from 'path';
 
 // Importing routes
 import index from './routes';
+import users from './routes/users';
 
 
 // initialization
@@ -28,6 +29,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
 // routes
+app.use('/api/users', users);
 app.use('/', index);
 
 export default app;

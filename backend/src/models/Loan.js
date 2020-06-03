@@ -22,7 +22,7 @@ const Loan = sequelize.define('loans', {
     type: Sequelize.INTEGER
   },
 },{
-  timeStamps: false
+  timestamps: false
 });
 
 export default Loan;

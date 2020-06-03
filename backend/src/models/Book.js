@@ -23,7 +23,7 @@ const Book = sequelize.define('books', {
     type: Sequelize.TEXT
   }
 },{
-  timeStamps: false
+  timestamps: false
 });
 
 Book.hasMany(Inventory, {foreingKey: 'book_id', sourceKey: 'id'});
