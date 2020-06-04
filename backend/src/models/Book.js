@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { sequelize } = require('../database');
+const sequelize = require('../database');
 const Inventory  = require('../models/Inventory');
 
 const Book = sequelize.define('books', {
@@ -13,7 +13,7 @@ const Book = sequelize.define('books', {
   description: {
     type: Sequelize.TEXT
   },
-  urlImage: {
+  urlimage: {
     type: Sequelize.TEXT
   },
   register_date: {

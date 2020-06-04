@@ -52,7 +52,6 @@ exports.getUsers = async (req, res) => {
 exports.getUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log('params ',req.params);
     
     const user = await User.findOne({
       where: {

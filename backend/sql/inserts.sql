@@ -18,7 +18,7 @@ INSERT INTO public.users ("name",sex,cell_phone,email,rol)
 	VALUES ('SUPER ADMIN','H','5578687852','josealberto.martinezmarquez@gamil.com','SA');
 
 
--- INSERTAMOS LOS LIBROS BASE
+-- INSERTAMOS ALGUNOS LIBROS DE https://lavozdelmuro.net/100-libros-que-todo-ser-humano-deberia-leer/
 INSERT INTO public.books (title,description,urlimage,register_date,author)
 	VALUES ('Matar a un Ruiseñor','Matar un ruiseñor es una novela de la escritora estadounidense Harper Lee. Publicada en 1960, tuvo un éxito instantáneo, ganando el premio Pulitzer y pasando a convertirse en un clásico de la literatura moderna estadounidense.','https://lavozdelmuro.net/wp-content/uploads/2015/01/1.-matar-a-un-ruise%C3%B1or-1.jpg','2020-06-03','Harper Lee');
 INSERT INTO public.books (title,description,urlimage,register_date,author)
