@@ -1,6 +1,6 @@
-import Sequelize from 'sequelize';
-import { sequelize } from '../database';
-import Loan from '../models/Loan';
+const Sequelize = require('sequelize');
+const { sequelize } = require('../database');
+const Loan = require('../models/Loan');
 
 const Inventory = sequelize.define('inventories', {
   id : {
@@ -20,4 +20,4 @@ const Inventory = sequelize.define('inventories', {
 Inventory.hasMany(Loan, {foreingKey: 'inventory_id', sourceKey: 'id'});
 Loan.belongsTo(Inventory,  {foreingKey: 'inventory_id', sourceKey: 'id'});
 
-export default Inventory;
+module.exports = Inventory;

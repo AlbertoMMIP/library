@@ -1,9 +1,15 @@
-import { Router } from 'express';
-const router = Router();
+const express = require('express');
+const router  = express.Router();
 
-import { createUser } from '../controllers/user.controller';
+const controller = require('../controllers/user.controller');
 
 // /api/users/
-router.post('/', createUser);
+router.post('/', controller.createUser);
+router.get('/', controller.getUsers);
 
-export default router;
+// /api/users/:userID
+router.get('/:id', controller.getUserById);
+router.delete('/:id', controller.deleteUserById);
+router.put('/:id', controller.updateUserById);
+
+module.exports = router;

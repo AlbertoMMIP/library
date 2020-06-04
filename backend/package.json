@@ -4,9 +4,8 @@
   "description": "Back para gestionar el préstamo de libros de una biblioteca.",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/index.js --exec babel-node",
-    "build": "babel src --out-dir dist",
-    "start": "node dist/index.js"
+    "dev": "nodemon ./bin/www.js",
+    "start": "node ./bin/www.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +22,9 @@
   "homepage": "https://github.com/AlbertoMMIP/library#readme",
   "dependencies": {
     "@babel/polyfill": "^7.10.1",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "hbs": "^4.1.1",
     "morgan": "^1.10.0",

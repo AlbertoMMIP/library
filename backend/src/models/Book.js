@@ -1,6 +1,6 @@
-import Sequelize from 'sequelize';
-import { sequelize } from '../database';
-import Inventory  from '../models/Inventory';
+const Sequelize = require('sequelize');
+const { sequelize } = require('../database');
+const Inventory  = require('../models/Inventory');
 
 const Book = sequelize.define('books', {
   id: {
@@ -29,4 +29,4 @@ const Book = sequelize.define('books', {
 Book.hasMany(Inventory, {foreingKey: 'book_id', sourceKey: 'id'});
 Inventory.belongsTo(Book,  {foreingKey: 'book_id', sourceKey: 'id'});
 
-export default Book;
+module.exports =  Book;

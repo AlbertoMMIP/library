@@ -1,5 +1,5 @@
-import Sequelize from 'sequelize';
-import { sequelize } from '../database';
+const Sequelize = require('sequelize');
+const sequelize = require('../database');
 
 const Loan = sequelize.define('loans', {
   id: {
@@ -25,4 +25,4 @@ const Loan = sequelize.define('loans', {
   timestamps: false
 });
 
-export default Loan;
+module.exports = Loan;

@@ -1,10 +1,13 @@
-import express, { json } from 'express';
-import morgan from 'morgan';
-import path from 'path';
+require('dotenv').config();
 
+const bodyParser  = require('body-parser');
+const cookieParser = require('cookie-parser');
+const express     = require('express');
+const morgan      = require('morgan');
+const path        = require('path');
 // Importing routes
-import index from './routes';
-import users from './routes/users';
+const index = require('./routes');
+const users = require('./routes/users');
 
 
 // initialization
@@ -12,7 +15,9 @@ const app = express();
 
 // middlewares
 app.use(morgan('dev'));
-app.use(json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 // Express View engine setup
 
@@ -32,4 +37,6 @@ app.set('view engine', 'hbs');
 app.use('/api/users', users);
 app.use('/', index);
 
-export default app;
+
+
+module.exports = app;
