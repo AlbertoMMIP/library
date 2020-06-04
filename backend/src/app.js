@@ -9,6 +9,7 @@ const path         = require('path');
 const index = require('./routes');
 const users = require('./routes/users');
 const books = require('./routes/books');
+const inventories = require('./routes/inventories');
 
 
 // initialization
@@ -44,6 +45,7 @@ app.locals.title = 'API Libreria de Alberto';
 // routes
 app.use('/api/users', users);
 app.use('/api/books', books);
+app.use('/api/inventories', inventories);
 app.use('/', index);
 /* app.all("*", (req,res) => {
   res.sendFile(`${__dirname}/public/index.html`);

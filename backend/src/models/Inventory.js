@@ -7,11 +7,14 @@ const Inventory = sequelize.define('inventories', {
     type: Sequelize.INTEGER,
     primaryKey: true
   },
-  inventory_code: {
+  'inventory_code': {
     type: Sequelize.TEXT
   },
-  book_id: {
+  'book_id': {
     type: Sequelize.INTEGER
+  },
+  status: {
+    type: Sequelize.TEXT
   }
 },{
   timestamps: false
