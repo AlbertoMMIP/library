@@ -1,12 +1,12 @@
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize(
-  'library',
-  'imac',
-  '',
+  process.env.DB,
+  process.env.DB_USER,
+  process.env.DB_PASS,
   {
-    host: 'localhost',
-    dialect: 'postgres',
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_SERVER,
     pool:{
       max: 5,
       min: 0,

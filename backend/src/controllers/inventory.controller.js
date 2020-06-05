@@ -153,3 +153,27 @@ exports.updateInventoryById = async (req, res) => {
     })
   }
 }
+
+exports.updateStatusInventory = async (id, status) => {
+  let response = true;
+  try {
+    const inventories = await Inventory.findAll({
+      attributes: ['id','inventory_code', 'book_id', 'status' ],
+      where: {
+        id
+      }
+    });
+    
+    if (inventories.length > 0) {
+      inventories.forEach(async (Inventory) => {
+        await Inventory.update({
+          status
+        });
+      });
+    }
+  } catch (error) {
+    console.log("Error al actualizar status inventory => ", error);
+    response = false;
+  }
+  return response;
+}

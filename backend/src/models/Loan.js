@@ -6,21 +6,24 @@ const Loan = sequelize.define('loans', {
     type: Sequelize.INTEGER,
     primaryKey: true
   },
-  days_loan: {
+  'days_loan': {
     type: Sequelize.INTEGER
   },
   status: {
     type: Sequelize.TEXT
   },
-  loan_date: {
+  'start_date': {
     type: Sequelize.DATE
   },
-  inventory_id: {
+  'end_date': {
+    type: Sequelize.DATE
+  },
+  'inventory_id': {
     type: Sequelize.INTEGER
   },
-  user_id: {
+  'user_id': {
     type: Sequelize.INTEGER
-  },
+  }
 },{
   timestamps: false
 });
