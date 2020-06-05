@@ -1,7 +1,18 @@
-import React from 'react';
-import './App.css';
+import React, { useContext }  from 'react';
+import { useHistory } from 'react-router';
+import { GlobalContext } from "../../../context";
+import '../../../styles/Home/index.css';
 
-function App() {
+function Home() {
+  const history = useHistory();
+  const [, dispatch] = useContext(GlobalContext);
+
+  const handleSubmit = async e => {
+    e.preventDefault();
+    const user = {_id: '1'};
+    dispatch({ type: "LOGIN", payload: user });
+    history.push('/secret');
+  };
   return (
     <div className="App">
       <div className="App-header">
@@ -21,9 +32,9 @@ function App() {
             </div>
             <div className="field">
               <div className="control">
-                <button className="button is-fullwidth">
-                  <span class="icon">
-                    <i class="fas fa-home"></i>
+                <button className="button is-fullwidth" onClick={(e) => handleSubmit(e)} >
+                  <span className="icon">
+                    <i className="fas fa-home"></i>
                   </span>
                   <span>L O G I N</span>
                 </button>
@@ -36,4 +47,4 @@ function App() {
   );
 }
 
-export default App;
+export default Home;

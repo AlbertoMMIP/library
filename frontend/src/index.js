@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Routes from "./routes";
 import * as serviceWorker from './serviceWorker';
+import { GlobalProvider } from "./context";
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <GlobalProvider>
+    <Routes />
+  </GlobalProvider>,
   document.getElementById('root')
 );
 
