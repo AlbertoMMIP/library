@@ -2,7 +2,7 @@ const User =  require('../models/User');
 
 exports.createUser = async (req, res) => {
   try {
-    const { name, middle_name, last_name, sex, birtdate, cell_phone, email, rol } = req.body;
+    const { name, middle_name, last_name, sex, birtdate, cell_phone, email, password, rol } = req.body;
   
     let newUser = await User.create({
       name, 
@@ -11,10 +11,11 @@ exports.createUser = async (req, res) => {
       sex, 
       birtdate, 
       cell_phone, 
-      email, 
+      email,
+      password,
       rol 
     }, {
-      fields: ['name', 'middle_name', 'last_name', 'sex', 'birtdate', 'cell_phone', 'email', 'rol']
+      fields: ['name', 'middle_name', 'last_name', 'sex', 'birtdate', 'cell_phone', 'email', 'password', 'rol']
     });
     if (newUser) {
       return res.json({
@@ -100,7 +101,7 @@ exports.updateUserById = async (req, res) => {
     const { name, middle_name, last_name, sex, birtdate, cell_phone, email, rol } = req.body;
     
     const users = await User.findAll({
-      attributes: ['id', 'name', 'middle_name', 'last_name', 'sex', 'birtdate', 'cell_phone', 'email', 'rol'],
+      attributes: ['id', 'name', 'middle_name', 'last_name', 'sex', 'birtdate', 'cell_phone', 'email', 'password', 'rol'],
       where: {
         id
       }
@@ -115,7 +116,8 @@ exports.updateUserById = async (req, res) => {
           sex, 
           birtdate, 
           cell_phone, 
-          email, 
+          email,
+          password,
           rol 
         });
       });

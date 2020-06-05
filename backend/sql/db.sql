@@ -29,7 +29,8 @@ CREATE TABLE IF NOT EXISTS users(
   sex text,
   birtdate date,
   cell_phone text,
-  email text,
+  email text UNIQUE,
+  password text,
   rol text REFERENCES catalogs(code)
 );
 

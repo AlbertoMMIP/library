@@ -21,8 +21,8 @@ INSERT INTO public.catalogs (code,description,type_catalog)
 
 
 -- Se genera el usuario super administrador
-INSERT INTO public.users ("name",sex,cell_phone,email,rol)
-	VALUES ('SUPER ADMIN','H','5578687852','josealberto.martinezmarquez@gamil.com','SA');
+INSERT INTO public.users ("name",sex,cell_phone,email,"password",rol)
+	VALUES ('SUPER ADMIN','H','5578687852','josealberto.martinezmarquez@gamil.com','1234','SA');
 
 
 -- INSERTAMOS ALGUNOS LIBROS DE https://lavozdelmuro.net/100-libros-que-todo-ser-humano-deberia-leer/
