@@ -15,7 +15,7 @@
 
 .App-header {
   /* background-color: #cfd5e0; */
-  background-image: url('https://images.unsplash.com/photo-1552197680-0223a9065fa3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2550&q=80');
+  background-image: url('https://images.unsplash.com/photo-1526243741027-444d633d7365?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80');
   min-height: 100vh;
   display: flex;
   flex-direction: column;

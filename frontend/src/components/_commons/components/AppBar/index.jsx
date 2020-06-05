@@ -1,6 +1,27 @@
-import React from "react";
+import React, { useContext }  from "react";
+import { GlobalContext } from "../../../../context";
+import * as menu from './constants';
 
 function AppBar() {
+  const [user] = useContext(GlobalContext);
+  console.log('user => ', user);
+  let opciones = [];
+  switch (user.rol) {
+    case undefined:
+      opciones = menu.opciones;
+      break;
+    case menu.rol.SUPERADMIN:
+    case menu.rol.ADMIN:
+      opciones = menu.opcionesAdmin;
+      break;
+    case menu.rol.USUARIO:
+      opciones = menu.opcionesUser;
+      break;
+    default:
+      opciones = menu.opciones;
+      break;
+  };
+  
   return (
     <div>
       <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -18,24 +39,13 @@ function AppBar() {
 
         <div id="navbarBasicExample" className="navbar-menu">
           <div className="navbar-start">
-            <a className="navbar-item"  href="/secret" >
-              Home
-            </a>
-
-            <a className="navbar-item"  href="/secret" >
-              Documentation
-            </a>
+            { opciones.start.map((o) => <a key={o.title} className="navbar-item"  href={o.href}>{o.title}</a>) }
           </div>
 
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <a className="button is-primary"  href="/secret" >
-                  <strong>Sign up</strong>
-                </a>
-                <a className="button is-light"  href="/secret" >
-                  Log in
-                </a>
+              { opciones.end.map((o) => <a key={o.title} className="button is-primary" href={o.href}>{o.title}</a>) }
               </div>
             </div>
           </div>

@@ -1,15 +1,28 @@
-import React, { useContext }  from 'react';
+import React, { useState, useContext }  from 'react';
 import { useHistory } from 'react-router';
 import { GlobalContext } from "../../../context";
 import '../../../styles/Home/index.css';
 
 function Home() {
+  const [formFields, setformFields] = useState({
+    email: "",
+    password: "",
+    showPassword: false,
+  });
   const history = useHistory();
   const [, dispatch] = useContext(GlobalContext);
 
+  const handleInputChange = ({ target: { name, value } }) => {
+    setformFields({
+      ...formFields,
+      [name]: value
+    });
+  };
   const handleSubmit = async e => {
     e.preventDefault();
-    const user = {_id: '1'};
+    formFields._id = formFields.email;
+    formFields.rol = formFields.email;
+    const user = formFields;
     dispatch({ type: "LOGIN", payload: user });
     history.push('/secret');
   };
@@ -21,7 +34,12 @@ function Home() {
             <div className="field">
               <label className="label">Email</label>
               <div className="control">
-                <input className="input" type="email" placeholder="e.g. alexsmith@gmail.com" />
+                <input className="input" 
+                  value={formFields.username}
+                  onChange={handleInputChange} 
+                  type="email" 
+                  name="email"
+                  placeholder="e.g. alexsmith@gmail.com" />
               </div>
             </div>
             <div className="field">

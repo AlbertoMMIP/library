@@ -1,20 +1,19 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 import ProtectedRoute from "../components/_commons/components/ProtectedRoute";
 //import AuthForm from "./components/AuthForm";
 import Library from "../components/scenes/Library";
 import Home from "../components/scenes/Home";
 import AppBar from "../components/_commons/components/AppBar";
-import { GlobalContext } from "../context";
 
 function Routes() {
-  const [user] = useContext(GlobalContext);
   return (
     <BrowserRouter>
-      {user._id &&  <AppBar /> }
+      <AppBar />
       <center>
         <Switch>
           <Route exact component={Home} path="/" />
+          <Route exact component={Library} path="/books" />
           {/* <Route
             exact
             component={() => <AuthForm type="login" />}
