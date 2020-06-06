@@ -11,7 +11,7 @@ const users = require('./routes/users');
 const books = require('./routes/books');
 const loans = require('./routes/loans');
 const inventories = require('./routes/inventories');
-
+const cors = require('cors');
 // initialization
 const app = express();
 
@@ -21,8 +21,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// Express View engine setup
+// cors
+app.use(cors({
+  origin:['http://localhost:3001']
+}));
 
+// Express View engine setup
 app.use(require('node-sass-middleware')({
   src:  path.join(__dirname, 'public'),
   dest: path.join(__dirname, 'public'),

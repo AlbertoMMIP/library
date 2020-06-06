@@ -1,7 +1,7 @@
 export const opciones = {
   start:[{title:'Books', href:'/books'}], 
-  end:[{title:'Sign up', href:'/secret'},
-  {title:'Log in', href:'/secret'}]};
+  end:[{title:'Sign up', href:'/registerUser'},
+  {title:'Log in', href:'/login'}]};
 
 export const opcionesUser = {
   start:[{title:'Books', href:'/books'},
@@ -14,7 +14,7 @@ export const opcionesAdmin = {
           {title:'Requests', href:'/secret'},
           {title:'Users', href:'/secret'},
           {title:'Profile', href:'/secret'}], 
-  end:[{title:'Register', href:'/secret'},
+  end:[{title:'Register', href:'/registerBook'},
       {title:'Log out', href:'/secret'}]};
 
 export const rol = {

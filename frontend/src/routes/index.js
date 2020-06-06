@@ -1,10 +1,10 @@
 import React from "react";
 import { Route, BrowserRouter, Switch } from "react-router-dom";
-import ProtectedRoute from "../components/_commons/components/ProtectedRoute";
-//import AuthForm from "./components/AuthForm";
+import Login from "../components/scenes/Login";
+import Register from "../components/scenes/Register";
 import Library from "../components/scenes/Library";
-import Home from "../components/scenes/Home";
 import AppBar from "../components/_commons/components/AppBar";
+import ProtectedRoute from "../components/_commons/components/ProtectedRoute";
 
 function Routes() {
   return (
@@ -12,18 +12,19 @@ function Routes() {
       <AppBar />
       <center>
         <Switch>
-          <Route exact component={Home} path="/" />
+          <Route exact component={Library} path="/" />
           <Route exact component={Library} path="/books" />
-          {/* <Route
+          <Route exact component={Login}   path="/login" />
+          <Route
             exact
-            component={() => <AuthForm type="login" />}
-            path="/login"
+            component={() => <Register type="user" />}
+            path="/registerUser"
           />
           <Route
             exact
-            component={() => <AuthForm type="signup" />}
-            path="/signup"
-          /> */}
+            component={() => <Register type="book" />}
+            path="/registerBook"
+          />
           <ProtectedRoute exact component={Library} path="/secret" />
         </Switch>
       </center>
