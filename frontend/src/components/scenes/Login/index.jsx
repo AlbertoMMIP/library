@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { useHistory } from "react-router";
 import { GlobalContext } from "../../../context";
-import "../../../styles/Home/index.css";
+import "./styles/index.css";
 
 function Home() {
   const [formFields, setformFields] = useState({

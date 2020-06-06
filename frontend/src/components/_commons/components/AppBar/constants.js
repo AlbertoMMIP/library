@@ -6,14 +6,14 @@ export const opciones = {
 export const opcionesUser = {
   start:[{title:'Books', href:'/books'},
         {title:'My books', href:'/secret'},
-        {title:'Profile', href:'/secret'}], 
+        {title:'Profile', href:'/profile'}], 
   end:[{title:'Log out', href:'/secret'}]};
 
 export const opcionesAdmin = {
   start:[{title:'Books', href:'/books'},
           {title:'Requests', href:'/secret'},
           {title:'Users', href:'/users'},
-          {title:'Profile', href:'/secret'}], 
+          {title:'Profile', href:'/profile'}], 
   end:[{title:'Register', href:'/registerBook'},
       {title:'Log out', href:'/secret'}]};
 

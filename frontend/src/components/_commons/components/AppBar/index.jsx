@@ -25,10 +25,10 @@ function AppBar() {
   return (
     <div>
       <nav className="navbar" role="navigation" aria-label="main navigation">
-        <div className="navbar-brand">
-          <a className="navbar-item" href="/secret" >
+        <div className="navbar-brand" style={{marginBottom:'-22px'}}>
+          <span className="title is-5 navbar-item" >
             BookStore by Alberto
-          </a>
+          </span>
 
           <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample"  href="/secret" >
             <span aria-hidden="true"></span>

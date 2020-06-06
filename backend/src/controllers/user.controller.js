@@ -2,20 +2,20 @@ const User =  require('../models/User');
 
 exports.createUser = async (req, res) => {
   try {
-    const { name, middle_name, last_name, sex, birtdate, cell_phone, email, password, rol } = req.body;
+    const { name, middle_name, last_name, sex, age, cell_phone, email, password, rol } = req.body;
   
     let newUser = await User.create({
       name, 
       middle_name, 
       last_name, 
       sex, 
-      birtdate, 
+      age, 
       cell_phone, 
       email,
       password,
       rol 
     }, {
-      fields: ['name', 'middle_name', 'last_name', 'sex', 'birtdate', 'cell_phone', 'email', 'password', 'rol']
+      fields: ['name', 'middle_name', 'last_name', 'sex', 'age', 'cell_phone', 'email', 'password', 'rol']
     });
     if (newUser) {
       return res.json({
@@ -35,7 +35,9 @@ exports.createUser = async (req, res) => {
 
 exports.getUsers = async (req, res) => {
   try {
-    const users = await User.findAll();
+    const users = await User.findAll({
+      order: ['id']
+    });
     return res.json({
       message: 'Users get successfully',
       data: users
@@ -98,10 +100,10 @@ exports.deleteUserById = async (req, res) => {
 exports.updateUserById = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name, middle_name, last_name, sex, birtdate, cell_phone, email, rol } = req.body;
+    const { name, middle_name, last_name, sex, age, cell_phone, email, rol } = req.body;
     
     const users = await User.findAll({
-      attributes: ['id', 'name', 'middle_name', 'last_name', 'sex', 'birtdate', 'cell_phone', 'email', 'password', 'rol'],
+      attributes: ['id', 'name', 'middle_name', 'last_name', 'sex', 'age', 'cell_phone', 'email', 'password', 'rol'],
       where: {
         id
       }
@@ -114,7 +116,7 @@ exports.updateUserById = async (req, res) => {
           middle_name, 
           last_name, 
           sex, 
-          birtdate, 
+          age, 
           cell_phone, 
           email,
           password,

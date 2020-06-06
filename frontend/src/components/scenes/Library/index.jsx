@@ -3,7 +3,7 @@ import CardBook from "../../_commons/components/CardBook";
 import Searching from "../../_commons/components/Searching";
 import { getBooks }  from "../../../services/books.js";
 import { filterProjects } from './Logica';
-import '../../../styles/Library/index.css';
+import "../../../styles/index.css";
 
 function Library() {
 
@@ -27,7 +27,7 @@ function Library() {
   };
 
   return (
-    <div className="Library">
+    <div className="App">
       <div className="container">
         <br />
         <Searching filter={filterArray} />

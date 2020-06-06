@@ -27,7 +27,7 @@ CREATE TABLE IF NOT EXISTS users(
   middle_name text,
   last_name text,
   sex text,
-  birtdate date,
+  age INTEGER,
   cell_phone text,
   email text UNIQUE,
   password text,

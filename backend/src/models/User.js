@@ -19,8 +19,8 @@ const User = sequelize.define('users', {
   sex: {
     type: Sequelize.TEXT
   },
-  birtdate: {
-    type: Sequelize.DATE
+  age: {
+    type: Sequelize.INTEGER
   },
   cell_phone: {
     type: Sequelize.TEXT
