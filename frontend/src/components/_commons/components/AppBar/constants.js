@@ -12,7 +12,7 @@ export const opcionesUser = {
 export const opcionesAdmin = {
   start:[{title:'Books', href:'/books'},
           {title:'Requests', href:'/secret'},
-          {title:'Users', href:'/secret'},
+          {title:'Users', href:'/users'},
           {title:'Profile', href:'/secret'}], 
   end:[{title:'Register', href:'/registerBook'},
       {title:'Log out', href:'/secret'}]};
