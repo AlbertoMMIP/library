@@ -1,7 +1,6 @@
 import axios from 'axios';
-
-const base_url = 'http://localhost:3000/api';
+import { BASE_URL_API } from "./constants";
 
 export const getBooks = () => {
-  return axios.get(`${base_url}/books`);
+  return axios.get(`${BASE_URL_API}/books`);
 };

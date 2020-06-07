@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import Modal from '../Modal';
 
-function CardBook({book}) {
+function CardBook({book, rol, users}) {
+  const [openModal, setModal] = useState(false);
+  const handleModal = () => setModal(!openModal);
+
   return (
     <div className="card">
       <div className="card-image">
@@ -22,7 +26,16 @@ function CardBook({book}) {
           <time dateTime="2016-1-1">Registrado el {book.register_date}</time>
         </div>
       </div>
+      {rol === 'A' &&
+        <footer className="card-footer">
+          <button onClick={handleModal}  className="button is-primary card-footer-item"><b>Click </b> to request loan</button>
+      </footer>
+      }
+      <div id='modal'>
+        {openModal && <Modal close={handleModal} users={users} title={book.title} idBook={book.id} />}
+      </div>
     </div>
+    
   );
 }
 

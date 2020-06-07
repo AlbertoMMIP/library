@@ -1,10 +1,9 @@
 import axios from 'axios';
-
-const base_url = 'http://localhost:3000/api';
+import { BASE_URL_API } from "./constants";
 
 export const login = async (auth, history, dispatch) => {
   let response = "";
-  await axios.post(`${base_url}/auth/login`,auth)
+  await axios.post(`${BASE_URL_API}/auth/login`,auth)
           .then(res => {
             console.log("id", res);
             localStorage.setItem(("id"),JSON.stringify(res.data.id));
@@ -20,9 +19,9 @@ export const login = async (auth, history, dispatch) => {
 };
 
 export const getUsers = () => {
-  return axios.get(`${base_url}/users`);
+  return axios.get(`${BASE_URL_API}/users`);
 };
 
 export const createUser = (user) => {
-  return axios.post(`${base_url}/users/create`,user)
+  return axios.post(`${BASE_URL_API}/users/create`,user)
 };

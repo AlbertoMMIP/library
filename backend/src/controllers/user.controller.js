@@ -37,6 +37,9 @@ exports.createUser = async (req, res) => {
 exports.getUsers = async (req, res) => {
   try {
     const users = await User.findAll({
+      where: {
+        rol: ['U']
+      },
       order: ['id']
     });
     return res.json({

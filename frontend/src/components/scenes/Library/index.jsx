@@ -3,22 +3,36 @@ import CardBook from "../../_commons/components/CardBook";
 import Searching from "../../_commons/components/Searching";
 import { getBooks }  from "../../../services/books.js";
 import { filterProjects } from './Logica';
+import { getUsers }  from "../../../services/users";
 import "../../../styles/index.css";
 
 function Library() {
-
   const [books, setBooks] = useState({ original: [], filter: [] });
-
+  const [rol, setRol] = useState('U');
+  const [users, setUsers] = useState([]);
   useEffect(() => {
     getBooks()
       .then(res => {
-        console.log("libros ", res.data)
         setBooks({ original: res.data.data, filter: res.data.data });
       })
       .catch(err => console.log("Error al obtener los libros ", err));
 
+      let rol = localStorage.getItem("rol");
+      if (rol) rol = rol.replace('"','').replace('"','');
+      setRol(rol);
+
+      if(rol !== 'U'){
+        getUsers()
+        .then(res => {
+          setUsers(res.data.data);
+        })
+        .catch(err => console.log("Error al obtener los usuarios ", err));
+      }
+
     return () => {
       setBooks([]);
+      setRol('U');
+      setUsers([]);
     }
   }, []);
 
@@ -33,7 +47,7 @@ function Library() {
         <Searching filter={filterArray} />
         <br />
         <div className="columns is-multiline is-mobile">
-          { books.filter && books.filter.map((e,i) => <div key={`key${i}`} className="column is-full-mobile is-one-third-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd"> <CardBook key={`key${i}`} book={e} /> </div>) }
+          { books.filter && books.filter.map((e,i) => <div key={`key${i}`} className="column is-full-mobile is-one-third-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd"> <CardBook key={`key${i}`} book={e} rol={rol} users={users} /> </div>) }
         </div>
       </div>
     </div>

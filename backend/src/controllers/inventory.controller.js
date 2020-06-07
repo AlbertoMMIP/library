@@ -78,7 +78,8 @@ exports.getInventoiesByBook = async (req, res) => {
     const inventories = await Inventory.findAll({
       attributes: ['id','inventory_code', 'book_id', 'status'],
       where: {
-        book_id
+        book_id,
+        status:['D']
       }
     });
 

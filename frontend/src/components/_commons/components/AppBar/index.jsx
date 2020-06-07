@@ -6,36 +6,38 @@ function AppBar() {
   const [opciones, setOptions] = useState(menu.opciones);
   const [user] = useContext(GlobalContext);
 
-  const chooseMenu = () => {
-    console.log("user", user);
-    let rol = user.user.rol ? user.user.rol : localStorage.getItem("rol");
-    console.log("rol", rol);
-    if (rol) rol = rol.replace('"','').replace('"','');
-    
-    let opciones = [];
-    switch (rol) {
-      case undefined:
-        opciones = menu.opciones;
-        break;
-      case menu.rol.SUPERADMIN:
-      case menu.rol.ADMIN:
-        opciones = menu.opcionesAdmin;
-        break;
-      case menu.rol.USUARIO:
-        opciones = menu.opcionesUser;
-        break;
-      default:
-        opciones = menu.opciones;
-        break;
-    };
-    setOptions(opciones);
-  }
+
 
   //if (user) chooseMenu();
   
   useEffect(() => {
+    const chooseMenu = () => {
+      console.log("user", user);
+      let rol = user.user.rol ? user.user.rol : localStorage.getItem("rol");
+      console.log("rol", rol);
+      if (rol) rol = rol.replace('"','').replace('"','');
+      
+      let opciones = [];
+      switch (rol) {
+        case undefined:
+          opciones = menu.opciones;
+          break;
+        case menu.rol.SUPERADMIN:
+        case menu.rol.ADMIN:
+          opciones = menu.opcionesAdmin;
+          break;
+        case menu.rol.USUARIO:
+          opciones = menu.opcionesUser;
+          break;
+        default:
+          opciones = menu.opciones;
+          break;
+      };
+      setOptions(opciones);
+    }
+    
     chooseMenu();
-  },[]);
+  },[user]);
 
   
 
