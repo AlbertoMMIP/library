@@ -10,6 +10,7 @@ const index = require('./routes');
 const users = require('./routes/users');
 const books = require('./routes/books');
 const loans = require('./routes/loans');
+const auth  = require('./routes/auth');
 const inventories = require('./routes/inventories');
 const cors = require('cors');
 // initialization
@@ -44,6 +45,7 @@ app.locals.title = 'API Libreria de Alberto';
 app.use('/api/users', users);
 app.use('/api/books', books);
 app.use('/api/loans', loans);
+app.use('/api/auth', auth);
 app.use('/api/inventories', inventories);
 app.use('/', index);
 /* app.all("*", (req,res) => {

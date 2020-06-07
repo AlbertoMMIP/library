@@ -1,9 +1,10 @@
 const User =  require('../models/User');
-
+const bcrypt = require('bcrypt');
 exports.createUser = async (req, res) => {
   try {
     const { name, middle_name, last_name, sex, age, cell_phone, email, password, rol } = req.body;
-  
+    const salt = bcrypt.genSaltSync(256);
+    const hashedPassword = bcrypt.hashSync(password,salt);
     let newUser = await User.create({
       name, 
       middle_name, 
@@ -12,7 +13,7 @@ exports.createUser = async (req, res) => {
       age, 
       cell_phone, 
       email,
-      password,
+      password:hashedPassword,
       rol 
     }, {
       fields: ['name', 'middle_name', 'last_name', 'sex', 'age', 'cell_phone', 'email', 'password', 'rol']

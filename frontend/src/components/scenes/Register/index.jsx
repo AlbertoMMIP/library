@@ -1,7 +1,7 @@
 import React from "react";
 import User from "./User";
 import Book from "./Book";
-import "../Library/styles/index.css";
+import "../../../styles/index.css";
 
 
 function Register({type}) {

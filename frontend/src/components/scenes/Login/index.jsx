@@ -1,31 +1,43 @@
-import React, { useState, useContext } from "react";
-import { useHistory } from "react-router";
-import { GlobalContext } from "../../../context";
+import React, { useState } from "react";
+import { useHistory } from 'react-router';
+import { login } from '../../../services/users.js';
+import Notification from "../../_commons/elements/Notification";
+import { validaFormulario } from '../../../utils/validations';
 import "./styles/index.css";
 
 function Home() {
+  const history = useHistory();
   const [formFields, setformFields] = useState({
     email: "",
     password: "",
-    showPassword: false,
+    error: false,
+    msgError: "Error"
   });
-  const history = useHistory();
-  const [, dispatch] = useContext(GlobalContext);
 
+  const closeError = () => setformFields({...formFields, error:false});
   const handleInputChange = ({ target: { name, value } }) => {
     setformFields({
       ...formFields,
       [name]: value,
     });
   };
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    formFields._id = formFields.email;
-    formFields.rol = formFields.email;
-    const user = formFields;
-    dispatch({ type: "LOGIN", payload: user });
-    history.push("/secret");
+    let valida = validaFormulario(formFields);
+    console.log("valida", valida);
+    
+    if (!valida) {
+      login(formFields, history)
+      .then(res => {
+        if(res) setformFields({...formFields, error:true, msgError:res})
+      })
+    }else {
+      setformFields({...formFields, error:true, msgError:valida})
+    }
   };
+
+  const enabledButton = (formFields.email.length > 1 && formFields.password.length > 1) ? false : true;
+
   return (
     <div className="Home">
       <div className="container">
@@ -38,7 +50,7 @@ function Home() {
                 <div className="control">
                   <input
                     className="input"
-                    value={formFields.username}
+                    value={formFields.email}
                     onChange={handleInputChange}
                     type="email"
                     name="email"
@@ -53,16 +65,19 @@ function Home() {
                     className="input"
                     type="password"
                     placeholder="**********"
+                    name="password"
+                    value={formFields.password}
+                    onChange={handleInputChange}
                   />
                 </div>
               </div>
               <div className="field">
                 <div className="control">
                   <button
-                    className="button is-fullwidth"
+                    className="button is-fullwidth" disabled={enabledButton}
                     onClick={(e) => handleSubmit(e)}
                   >
-                    <span>Continue</span>
+                    <span>Go</span>
                     <span className="icon">
                       <i className="fas fa-book"></i>
                     </span>
@@ -70,6 +85,8 @@ function Home() {
                 </div>
               </div>
             </div>
+            <br />
+            {formFields.error && <Notification  type="is-warning is-full" msg={formFields.msgError} close={closeError} />}
           </div>
         </nav>
       </div>
