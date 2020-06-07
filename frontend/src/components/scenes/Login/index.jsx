@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useHistory } from 'react-router';
 import { login } from '../../../services/users.js';
 import Notification from "../../_commons/elements/Notification";
 import { validaFormulario } from '../../../utils/validations';
+import { GlobalContext } from "../../../context";
 import "./styles/index.css";
 
 function Home() {
@@ -13,6 +14,7 @@ function Home() {
     error: false,
     msgError: "Error"
   });
+  const [, dispatch] = useContext(GlobalContext);
 
   const closeError = () => setformFields({...formFields, error:false});
   const handleInputChange = ({ target: { name, value } }) => {
@@ -24,10 +26,8 @@ function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
     let valida = validaFormulario(formFields);
-    console.log("valida", valida);
-    
     if (!valida) {
-      login(formFields, history)
+      login(formFields, history, dispatch)
       .then(res => {
         if(res) setformFields({...formFields, error:true, msgError:res})
       })

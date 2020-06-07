@@ -5,18 +5,22 @@ export const opciones = {
 
 export const opcionesUser = {
   start:[{title:'Books', href:'/books'},
-        {title:'My books', href:'/secret'},
         {title:'Profile', href:'/profile'}], 
-  end:[{title:'Log out', href:'/secret'}]};
+  end:[{title:'Log out', href:'/login', out:logout}]};
 
 export const opcionesAdmin = {
   start:[{title:'Books', href:'/books'},
-          {title:'Requests', href:'/secret'},
+          {title:'Loans', href:'/secret'},
           {title:'Users', href:'/users'},
           {title:'Profile', href:'/profile'}], 
   end:[{title:'Register', href:'/registerBook'},
-      {title:'Log out', href:'/secret'}]};
+      {title:'Log out', href:'/login', out:logout}]};
 
+function logout(){
+  localStorage.removeItem('rol');
+  localStorage.removeItem('name');
+  localStorage.removeItem('id');
+}
 export const rol = {
   SUPERADMIN: 'SA',
   ADMIN: 'A',

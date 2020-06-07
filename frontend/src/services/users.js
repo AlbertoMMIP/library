@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const base_url = 'http://localhost:3000/api';
 
-export const login = async (auth, history) => {
+export const login = async (auth, history, dispatch) => {
   let response = "";
   await axios.post(`${base_url}/auth/login`,auth)
           .then(res => {
@@ -10,7 +10,8 @@ export const login = async (auth, history) => {
             localStorage.setItem(("id"),JSON.stringify(res.data.id));
             localStorage.setItem(("name"),JSON.stringify(res.data.name));
             localStorage.setItem(("rol"),JSON.stringify(res.data.rol));
-            history.push("/books");
+            dispatch({ type: "LOGIN", payload: res.data });
+            history.push("/profile");
           })
           .catch(err => {
               response = err.response.data.msg || '';

@@ -16,6 +16,8 @@ export const GlobalProvider = props => {
 };
 
 function reducer(state, action) {
+  console.log('entro al reducer con', action);
+  
   switch (action.type) {
     case LOGIN:
       return action.payload;
