@@ -12,10 +12,7 @@ function AppBar() {
   
   useEffect(() => {
     const chooseMenu = () => {
-      console.log("user", user);
-      let rol = user.user.rol ? user.user.rol : localStorage.getItem("rol");
-      console.log("rol", rol);
-      if (rol) rol = rol.replace('"','').replace('"','');
+      let rol = (user.user ? user.user.rol : false) ? user.user.rol : localStorage.getItem("rol");
       
       let opciones = [];
       switch (rol) {

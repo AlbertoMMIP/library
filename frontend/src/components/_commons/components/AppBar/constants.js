@@ -12,12 +12,11 @@ export const opcionesAdmin = {
   start:[{title:'Books', href:'/books'},
           {title:'Users', href:'/users'},
           {title:'Profile', href:'/profile'}], 
-  end:[{title:'Register', href:'/registerBook'},
-      {title:'Log out', href:'/login', out:logout}]};
+  end:[{title:'Log out', href:'/login', out:logout}]};
 
 function logout(){
   localStorage.removeItem('rol');
-  localStorage.removeItem('name');
+  localStorage.removeItem('data');
   localStorage.removeItem('id');
 }
 export const rol = {

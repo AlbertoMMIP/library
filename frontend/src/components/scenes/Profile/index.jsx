@@ -1,26 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Panel from "../../_commons/components/Panel";
-
-import User from "../Register/User";
+import ProfileView from "../../_commons/components/Profile";
+import LoansPanel from "../../_commons/components/LoansPanel";
 
 function Profile() {
-  const [user, setUser] = useState('');
+  const [data, setUser] = useState({});
+  const [active, setActive] = useState(true);
 
   useEffect(() => {
-    let name = localStorage.getItem("name");
-    setUser(name)
+    let data = JSON.parse(localStorage.getItem("data"));
+    setUser(data)
   },[])
 
-  const [active, setActive] = useState(true);
   return(
     <div>
-      <h2 className="title" >Bienvenido {user}</h2>
-      <Panel changeTab={setActive} />
+      <h2 className="title" >Bienvenido {data.name}</h2>
+      <Panel changeTab={setActive} rol={ data.rol} />
       <div className="container" >
         {active ? 
-          <User />
+          <ProfileView data={data} />
         :
-          <div>Books loans</div>
+         <LoansPanel />
         }
       </div>
     </div>

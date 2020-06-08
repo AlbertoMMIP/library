@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from "react";
 
-function Panel({changeTab}) {
+function Panel({changeTab, rol}) {
   const [active, setActive] = useState({info:"is-active", books: ""})
 
   const handleActive = (e) => {
@@ -34,14 +34,16 @@ function Panel({changeTab}) {
             <span >Personal Info</span>
           </a>
         </li>
-        <li className={active.books} onClick={(e) => handleActive('B')} >
-          <a>
-            <span className="icon is-small">
-              <i className="fas fa-book" aria-hidden="true"></i>
-            </span>
-            <span>Books loans</span>
-          </a>
-        </li>
+        {rol === 'U' &&
+          <li className={active.books} onClick={(e) => handleActive('B')} >
+            <a>
+              <span className="icon is-small">
+                <i className="fas fa-book" aria-hidden="true"></i>
+              </span>
+              <span>Books loans</span>
+            </a>
+          </li>
+        }
       </ul>
     </div>
   );

@@ -26,7 +26,7 @@ function CardBook({book, rol, users}) {
           <time dateTime="2016-1-1">Registrado el {book.register_date}</time>
         </div>
       </div>
-      {rol === 'A' &&
+      {rol &&
         <footer className="card-footer">
           <button onClick={handleModal}  className="button is-primary card-footer-item"><b>Click </b> to request loan</button>
       </footer>

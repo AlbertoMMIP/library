@@ -1,11 +1,11 @@
 import React from "react";
-import { useHistory } from 'react-router';
+// import { useHistory } from 'react-router';
 
 function Table({ data }) {
-  const history = useHistory();
-  const gotoProfile = (id) => {
-    history.push('/profile')
-  }
+  // const history = useHistory();
+  // const gotoProfile = (id) => {
+  //   history.push('/profile')
+  // }
 
   return (
     <table className="table">
@@ -19,7 +19,7 @@ function Table({ data }) {
           <th><abbr title="Sex">Sex</abbr></th>
           <th><abbr title="Phone">Phone</abbr></th>
           <th><abbr title="Email">Email</abbr></th>
-          <th><abbr>Action</abbr></th>
+          {/* <th><abbr>Action</abbr></th> */}
         </tr>
       </thead>
       <tfoot>
@@ -32,7 +32,7 @@ function Table({ data }) {
           <th><abbr title="Sex">Sex</abbr></th>
           <th><abbr title="Phone">Phone</abbr></th>
           <th><abbr title="Email">Email</abbr></th>
-          <th><abbr>Action</abbr></th>
+          {/* <th><abbr>Action</abbr></th> */}
         </tr>
       </tfoot>
       <tbody>
@@ -47,9 +47,9 @@ function Table({ data }) {
               <td>{u.sex}</td>
               <td>{u.cell_phone}</td>
               <td>{u.email}</td>
-              <td>
+              {/* <td>
                 <button className="button is-link" onClick={() => gotoProfile(u.id)} >Perfil</button>   
-              </td>
+              </td> */}
             </tr>
             )
           ) :

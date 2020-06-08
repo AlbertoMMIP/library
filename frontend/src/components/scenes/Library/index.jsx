@@ -40,14 +40,17 @@ function Library() {
     setBooks(filterProjects(value,books));
   };
 
+  const isAdmin = (rol === 'A' || rol === 'SA') && true;
+
   return (
     <div className="App">
       <div className="container">
         <br />
         <Searching filter={filterArray} />
         <br />
+        {isAdmin && <a className="button is-link is-fullwidth" href="/registerBook" style={{ marginBottom:'30px'}} >Add New Book</a>}
         <div className="columns is-multiline is-mobile">
-          { books.filter && books.filter.map((e,i) => <div key={`key${i}`} className="column is-full-mobile is-one-third-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd"> <CardBook key={`key${i}`} book={e} rol={rol} users={users} /> </div>) }
+          { books.filter && books.filter.map((e,i) => <div key={`key${i}`} className="column is-full-mobile is-one-third-tablet is-one-quarter-desktop is-one-quarter-widescreen is-one-quarter-fullhd"> <CardBook key={`key${i}`} book={e} rol={isAdmin} users={users} /> </div>) }
         </div>
       </div>
     </div>

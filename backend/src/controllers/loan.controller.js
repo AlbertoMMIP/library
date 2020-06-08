@@ -78,6 +78,30 @@ exports.getLoanById = async (req, res) => {
   }
 }
 
+exports.getLoanByUser = async (req, res) => {
+  try {
+    const { user_id } = req.params;
+    
+    const loan = await Loan.findAll({
+      attributes: ['id','days_loan', 'status', 'start_date', 'end_date', 'inventory_id', 'user_id'],
+      where: {
+        user_id
+      }
+    });
+    return res.json({
+      message: 'Loan by user get successfully',
+      data: loan
+    })
+  } catch (error) {
+    console.log("Error al consultar el prestamo por usuario => ", error);
+    res.status(500).json({
+      message: 'Something goes wrong',
+      error,
+      data: {}
+    })
+  }
+}
+
 exports.finishLoanById = async (req, res) => {
   try {
     const { id } = req.params;

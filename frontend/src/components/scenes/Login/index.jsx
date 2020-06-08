@@ -27,10 +27,7 @@ function Home() {
     e.preventDefault();
     let valida = validaFormulario(formFields);
     if (!valida) {
-      login(formFields, history, dispatch)
-      .then(res => {
-        if(res) setformFields({...formFields, error:true, msgError:res})
-      })
+      login(formFields, history, dispatch, setformFields, formFields);
     }else {
       setformFields({...formFields, error:true, msgError:valida})
     }
