@@ -10,15 +10,17 @@ Sistema fullstack para gestionar el préstamo de libros de una biblioteca.
 	a)Ingresar al directorio /library/backend desde la terminal 
 	b)Descargar las dependencias npm install
          c)generar el archivo .env con las siguientes variables con la configuración de tu equipo
+	 d)Ejecutar con npm start o npm run dev
+.env file
 PORT=3000
 DB=library
 DB_USER=tu usuario
 DB_PASS=tu pass
 DB_HOST=localhost
 DB_SERVER=postgres
-	d)Ejecutar con npm start o npm run dev
+	
 
-# 3) Front End
+# 3) Front End - Es necesario INTERNET para ver las imagenes
 	a)Ingresar al directorio /library/frontend desde la terminal 
 	b)Descargar las dependencias yarn install
  	c)Ejecutar con yarn start
