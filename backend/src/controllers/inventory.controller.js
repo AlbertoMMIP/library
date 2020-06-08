@@ -178,3 +178,23 @@ exports.updateStatusInventory = async (id, status) => {
   }
   return response;
 }
+
+exports.createInventoryInside = async (params) => {
+  try {
+    const { inventory_code, book_id } = params;
+  
+    let newInventory = await Inventory.create({
+      inventory_code, 
+      book_id,
+      status:"D"
+    }, {
+      fields: ['inventory_code', 'book_id', 'status']
+    });
+    if (newInventory) {
+      return true
+    }
+  } catch (error) {
+    console.log("Error al crear Inventory => ", error);
+    return false;
+  }
+}

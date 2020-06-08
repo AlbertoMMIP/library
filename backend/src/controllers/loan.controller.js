@@ -88,6 +88,7 @@ exports.getLoanByUser = async (req, res) => {
         user_id
       }
     });
+    
     return res.json({
       message: 'Loan by user get successfully',
       data: loan

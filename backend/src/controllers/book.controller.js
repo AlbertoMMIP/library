@@ -1,8 +1,9 @@
 const Book =  require('../models/Book');
+const invcontroller = require('../controllers/inventory.controller');
 
 exports.createBook = async (req, res) => {
   try {
-    const { title, description, urlimage, register_date, author } = req.body;
+    const { title, description, urlimage, register_date, author, count } = req.body;
   
     let newBook = await Book.create({
       title, 
@@ -11,9 +12,12 @@ exports.createBook = async (req, res) => {
       register_date, 
       author
     }, {
-      fields: ['title', 'description', 'urlmage', 'register_date', 'author']
+      fields: ['title', 'description', 'urlimage', 'register_date', 'author']
     });
     if (newBook) {
+      for (let index = 0; index < count; index++) {
+        invcontroller.createInventoryInside({inventory_code:this.generateCode(), book_id:newBook.id})
+      }
       return res.json({
         message: 'Book created successfully',
         data: newBook
@@ -127,4 +131,10 @@ exports.updateBookById = async (req, res) => {
       data: {}
     })
   }
+}
+
+exports.generateCode = () => {
+  let random = Math.floor(Math.random() * (999999 - 1)) + 1;
+  let code = random.toString().padStart(6,'0');
+  return 'L' + code;
 }
