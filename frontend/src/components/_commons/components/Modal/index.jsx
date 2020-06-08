@@ -1,24 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { getInventoriesByBook } from '../../../../services/inventories';
+import React, { useState } from 'react';
 import { createLoan } from '../../../../services/loans';
 import Notification from "../../../_commons/elements/Notification";
 
-function Modal({close, users, title, idBook}) {
-  const [body, setBody] = useState({ days_loan: 5, inventory_id:0, user_id:0 });
+function Modal({close, users, title, inventory}) {
+  const [body, setBody] = useState({ days_loan: 5, inventory_id: inventory.length > 0 ? inventory[0].id : 0, user_id:users[0].id  });
   const [errorFields, seterrorFields] = useState({
     error: false,
     msgError: "Error"
   });
-  const [inventory, setInventory] = useState([]);
-  
-  useEffect(() => {
-    getInventoriesByBook(idBook)
-      .then(i => {
-        setInventory(i.data.data)
-        setBody({ days_loan: 5, inventory_id:i.data.data[0].id, user_id:users[0].id })
-      });
-  },[idBook, users]);
-
   const selectOption = (e) => {
     setBody({
       ...body,
@@ -35,7 +24,7 @@ function Modal({close, users, title, idBook}) {
   }
 
   const handleSaveLoan = () =>{
-    console.log("Los datos a guardar son ", body);
+    // console.log("Los datos a guardar son ", body);
     createLoan(body)
       .then(res => {
         seterrorFields({...errorFields, error:true, msgError:"Prestamo creado correctamente"});
@@ -63,7 +52,7 @@ function Modal({close, users, title, idBook}) {
                   {inventory.length > 0 ? 
                     inventory.map((i) => <option key={i.inventory_code} id={i.id}>{title} - {i.inventory_code}</option>)
                   :
-                    <option>no inventory</option>
+                    <option>There are not enable books of this tititle</option>
                   }
                 </select>
               </div>
@@ -100,7 +89,7 @@ function Modal({close, users, title, idBook}) {
           </div>
         </section>
         <footer className="modal-card-foot">
-          <button className="button is-success" onClick={handleSaveLoan} >Loan book</button>
+          {body.inventory_id !== 0 && <button className="button is-success" onClick={handleSaveLoan} >Loan book</button>}
           <button className="button" onClick={close}>Cancel</button>
         </footer>
         {errorFields.error && <Notification  type="is-warning is-full" msg={errorFields.msgError} close={closeError} />}

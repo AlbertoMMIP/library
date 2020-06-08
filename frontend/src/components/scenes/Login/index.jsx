@@ -83,7 +83,7 @@ function Home() {
               </div>
             </div>
             <br />
-            {formFields.error && <Notification  type="is-warning is-full" msg={formFields.msgError} close={closeError} />}
+            {formFields.error && <Notification  type="is-warning is-fullwidth" msg={formFields.msgError} close={closeError} />}
           </div>
         </nav>
       </div>

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { registerUser } from "./Logica";
 import { useHistory } from "react-router";
+import Notification from "../../_commons/elements/Notification";
+import { validaFormulario } from '../../../utils/validations';
 
 function User() {
   const [warning, ] = useState(false);
@@ -15,9 +17,16 @@ function User() {
     email: "",
     password: "",
     rol: "U"
+  });  
+  const [fieldsError, setfieldsError] = useState({
+    error: false,
+    msgError: "Error"
   });
 
+  const closeError = () => setfieldsError({...fieldsError, error:false});
+
   const handleChange = ({ target: {name, value}}) => {
+    if((name==="age" && value.length > 2) || (name==="cell_phone" && value.length > 10)) return;
     setForm({
       ...form,
       [name]: value
@@ -30,11 +39,18 @@ function User() {
     })
   }
   const handleRegister = () => {
-    registerUser(form)
-      .then((u) => {
-        history.push('/login');
-      })
-      .catch(err => console.log("Error al registrar ", err))
+
+    let valida = validaFormulario(form);
+    if (!valida) {
+      registerUser(form)
+        .then((u) => {
+          setfieldsError({...fieldsError, error:true, msgError:"Usuario creado correctamente"});
+          setTimeout(function(){ history.push('/login'); }, 3000);
+        })
+        .catch(err => console.log("Error al registrar ", err))
+    }else {
+      setfieldsError({...fieldsError, error:true, msgError:valida})
+    }
   }
   
 
@@ -135,7 +151,7 @@ function User() {
       <div className="field">
         <label className="label">Age</label>
         <div className="control has-icons-left has-icons-right">
-          <input className="input is-success" type="text" name="age" placeholder="Text input" value={form.age} onChange={handleChange} />
+          <input className="input is-success" type="text" name="age" placeholder="Age" value={form.age} onChange={handleChange} />
           <span className="icon is-small is-left">
             <i className="fas fa-calendar"></i>
           </span>
@@ -159,14 +175,14 @@ function User() {
           </label>
         </div>
       </div>
-      <div className="field is-grouped">
+      <div className="field">
         <div className="control">
-          <button className="button is-link" onClick={handleRegister} >Register</button>
-        </div>
-        <div className="control">
-          <button className="button is-link is-light">Login</button>
+          <button className="button is-link is-fullwidth" onClick={handleRegister} >Register</button>
         </div>
       </div>
+
+      <br />
+      {fieldsError.error && <Notification  type="is-warning is-full" msg={fieldsError.msgError} close={closeError} />}
     </div>
   );
 }

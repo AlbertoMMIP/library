@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router";
 import { createBook } from "../../../services/books";
+import Notification from "../../_commons/elements/Notification";
+import { validaFormulario } from '../../../utils/validations';
 
 
 function Book() {
   const [warning, ] = useState(false);
+  const [fieldsError, setfieldsError] = useState({
+    error: false,
+    msgError: "Error"
+  });
+
   const [body, setBody] = useState({
     title: "",
     description: "",
@@ -15,7 +22,10 @@ function Book() {
   });
   const history = useHistory();
 
+  const closeError = () => setfieldsError({...fieldsError, error:false});
+
   const handleChange = ({ target: {name, value}}) => {
+    if(name==="coun" && value.length > 2)  return;
     setBody({
       ...body,
       [name]: value
@@ -23,11 +33,18 @@ function Book() {
   }
 
   const handleRegister = () => {    
-    createBook(body)
+    let valida = validaFormulario(body);
+    if (!valida) {
+      createBook(body)
       .then((b) => {
-        history.push('/books');
+        setfieldsError({...fieldsError, error:true, msgError:"Libro creado correctamente"});
+        setTimeout(function(){ history.push('/books'); }, 3000);
       })
       .catch(err => console.log("Error al registrar ", err))
+    }else {
+      setfieldsError({...fieldsError, error:true, msgError:valida})
+    }
+    
   }
   const handleGoBook = () => {
     history.push('/books');
@@ -111,6 +128,8 @@ function Book() {
         <button className="button is-link is-light" onClick={handleGoBook} >Cancel</button>
       </div>
     </div>
+    <br />
+    {fieldsError.error && <Notification  type="is-warning is-full" msg={fieldsError.msgError} close={closeError} />}
   </div>
   );
 }

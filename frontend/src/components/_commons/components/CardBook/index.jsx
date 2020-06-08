@@ -1,9 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from '../Modal';
+import { getInventoriesByBook } from '../../../../services/inventories';
 
 function CardBook({book, rol, users}) {
   const [openModal, setModal] = useState(false);
+  const [inventory, setInventory] = useState([]);
   const handleModal = () => setModal(!openModal);
+
+  useEffect(() => {
+      getInventoriesByBook(book.id)
+      .then(i => {
+        setInventory(i.data.data);
+      });
+    
+  },[book.id]);
 
   return (
     <div className="card">
@@ -32,7 +42,7 @@ function CardBook({book, rol, users}) {
       </footer>
       }
       <div id='modal'>
-        {openModal && <Modal close={handleModal} users={users} title={book.title} idBook={book.id} />}
+        {openModal && <Modal close={handleModal} users={users} title={book.title} inventory={inventory} />}
       </div>
     </div>
     
