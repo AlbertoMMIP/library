@@ -1,7 +1,9 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react';
 
-function LoansPanel() {
+function LoansPanel({data}) {
+  console.log('data recived', data);
+  
   return (
     <div>
       <nav className="panel">
@@ -16,46 +18,23 @@ function LoansPanel() {
             </span>
           </p>
         </div> */}
-        <a className="panel-block is-active">
+        {data.length > 0 ? 
+          data.map(b => (
+            <a className="panel-block" key={b.id}>
+              <span className="panel-icon">
+                <i className="fas fa-book" aria-hidden="true"></i>
+              </span>
+              Libro con invetario número {b.inventory_id} prestado por {b.days_loan} días y con estatus {b.status}, solicitado el día {b.start_date}
+            </a> 
+          ))
+          :
+          <a className="panel-block">
           <span className="panel-icon">
             <i className="fas fa-book" aria-hidden="true"></i>
           </span>
-          bulma
+          Sin libros prestados
         </a>
-        <a className="panel-block">
-          <span className="panel-icon">
-            <i className="fas fa-book" aria-hidden="true"></i>
-          </span>
-          marksheet
-        </a>
-        <a className="panel-block">
-          <span className="panel-icon">
-            <i className="fas fa-book" aria-hidden="true"></i>
-          </span>
-          minireset.css
-        </a>
-        <a className="panel-block">
-          <span className="panel-icon">
-            <i className="fas fa-book" aria-hidden="true"></i>
-          </span>
-          jgthms.github.io
-        </a>
-        <a className="panel-block">
-          <span className="panel-icon">
-            <i className="fas fa-code-branch" aria-hidden="true"></i>
-          </span>
-          daniellowtw/infboard
-        </a>
-        <a className="panel-block">
-          <span className="panel-icon">
-            <i className="fas fa-code-branch" aria-hidden="true"></i>
-          </span>
-          mojs
-        </a>
-        <label className="panel-block">
-          <input type="checkbox" />
-          remember me
-        </label>
+        }
       </nav>
     </div>
   );

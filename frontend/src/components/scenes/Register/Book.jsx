@@ -22,14 +22,15 @@ function Book() {
     })
   }
 
-  const handleRegister = () => {
-    console.log("se registrara", body);
-    
+  const handleRegister = () => {    
     createBook(body)
       .then((b) => {
         history.push('/books');
       })
       .catch(err => console.log("Error al registrar ", err))
+  }
+  const handleGoBook = () => {
+    history.push('/books');
   }
   
 
@@ -107,7 +108,7 @@ function Book() {
         <button className="button is-link" onClick={handleRegister} >Register</button>
       </div>
       <div className="control">
-        <button className="button is-link is-light">Cancel</button>
+        <button className="button is-link is-light" onClick={handleGoBook} >Cancel</button>
       </div>
     </div>
   </div>
