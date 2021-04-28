@@ -1,5 +1,6 @@
 # Library
-Full stack system to management the books loans in a library.
+
+Full stack system to management the books loans into a library.
 
 # Steps to init the system
 
@@ -43,5 +44,3 @@ Full stack system to management the books loans in a library.
 		c.3)Make new books
 		c.4)Management the books loans
 		c.5)See all the registered users
-
-		

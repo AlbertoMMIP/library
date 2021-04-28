@@ -3,7 +3,7 @@ import { createLoan } from '../../../../services/loans';
 import Notification from "../../../_commons/elements/Notification";
 
 function Modal({close, users, title, inventory}) {
-  const [body, setBody] = useState({ days_loan: 5, inventory_id: inventory.length > 0 ? inventory[0].id : 0, user_id:users[0].id  });
+  const [body, setBody] = useState({ days_loan: 5, inventory_id: inventory.length > 0 ? inventory[0].id : 0, user_id:users.length > 0 ? users[0].id : 0 });
   const [errorFields, seterrorFields] = useState({
     error: false,
     msgError: "Error"
@@ -89,7 +89,7 @@ function Modal({close, users, title, inventory}) {
           </div>
         </section>
         <footer className="modal-card-foot">
-          {body.inventory_id !== 0 && <button className="button is-success" onClick={handleSaveLoan} >Loan book</button>}
+          {(body.inventory_id !== 0 && body.user_id !== 0) && <button className="button is-success" onClick={handleSaveLoan} >Loan book</button>}
           <button className="button" onClick={close}>Cancel</button>
         </footer>
         {errorFields.error && <Notification  type="is-warning is-full" msg={errorFields.msgError} close={closeError} />}
