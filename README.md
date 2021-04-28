@@ -1,44 +1,46 @@
 # Library
-Sistema fullstack para gestionar el préstamo de libros de una biblioteca.
-# Instrucciones para levantar el sistema
-# 0) Clonar este repositorio
-# 1) Base de datos
-        a) Crear una base de datos llamada library
-         b) Ejecutar el archivo db.sql de la ruta library/backend/sql/db.sql para crear las tablas
-         c) Ejecutar los archivo inserts_num.sql (one, two, three, four)  de la la ruta library/backend/sql/ para registrar los datos necesarios.
-# 2) Back End
-	a)Ingresar al directorio /library/backend desde la terminal 
-	b)Descargar las dependencias npm install
-         c)generar el archivo .env con las siguientes variables con la configuración de tu equipo
-	 d)Ejecutar con npm start o npm run dev
-.env file
-PORT=3000
-DB=library
-DB_USER=tu usuario
-DB_PASS=tu pass
-DB_HOST=localhost
-DB_SERVER=postgres
+
+Full stack system to management the books loans into a library.
+
+# Steps to init the system
+
+# 0) Clone this repo
+
+# 1) Make your local database
+	a) Call to your database as => library
+	b) Execute the scripts in order (Scripts are inside the path library/backend/sql/)
+		1)000-db.sql
+		2)001-insert_one.sql
+		3)002-insert_two.sql
+		4)003-insert_three.sql
+		5)004-insert_four.sql
+
+# 2) Start Back End
+	a)Go to the folder /library/backend from your terminal
+	b)Download the dependencies with npm install
+	c)Make the file .env with the varibles of file env-example and put your sensitive information
+	d)Run the project with npm start or npm run dev
 	
 
-# 3) Front End - Es necesario INTERNET para ver las imagenes
-	a)Ingresar al directorio /library/frontend desde la terminal 
-	b)Descargar las dependencias yarn install
- 	c)Ejecutar con yarn start
+# 3) Start Front End - (You need internet to download the images)
+	a)Go to the folder /library/frontend from your terminal
+	b)Download the dependencies with yarn install
+ 	c)Run the project with yarn start
 
-# 4) Funcionalidades del Sistema
-	a)Perfil General
-		a.1) Ver los libros en existencia con filtro por titulo o autor
-		a.2) Registrarse 
-		a.3) Hacer Login
-	b)Perfil de Usuario (Usuario registrado desde el sistema)
-		b.1)Visualizar su perfil
-		b.2)Visualizar el historial de libros que ha solicitado
-		b.3)Visualizar los libros en existencia con filtro por titulo o autor
-	c)Perfil de Administrador (Usuario registrado dentro del punto 1 en la sección base de datos)
-		c.1)Para ingresar a esta sección debes usar el email admin@gmail.com y el pass 1234
-		c2.)Visualizar tu información 
-		c.3)Crear nuevos libros
-		c.4)Gestionar los prestamos de la librería
-		c.5)Visualizar los usuarios registrados en el sistema
+# Thats all, Now you can go to localhost:3000 and see the system 
 
-		
+# 4) System functionalities
+	a)General Profile
+		a.1) See available books and filter by title or autor
+		a.2) Sign up 
+		a.3) Login
+	b)User Profile (Users sign up from the system)
+		b.1)See you profile
+		b.2)See the requested books
+		b.3)See exists books and filter by title or author
+	c)Management Profile (superadmin)
+		c.1)To login like a superadmin you must enter email admin@gmail.com and the pass 1234
+		c2.)See the admin info 
+		c.3)Make new books
+		c.4)Management the books loans
+		c.5)See all the registered users
